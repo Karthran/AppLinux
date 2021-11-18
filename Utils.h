@@ -38,7 +38,8 @@ public:
     static auto printTimeAndData(const tm& timeinfo) -> void;
     static auto getString(std::string& string, int size) -> void;
     static auto getPassword(std::string& string, const std::string& text) -> void;
-    
+    static auto getSelfPath(std::string& path) -> void;	   
+
     template <typename T>
     static auto minToMaxOrder(T& min, T& max) -> bool;
 

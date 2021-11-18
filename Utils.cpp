@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <unistd.h> 
+#include <limits.h>
 
 #include "Utils.h"
 
@@ -52,4 +53,20 @@ auto Utils::getString(std::string& string, int size) -> void
 auto Utils::getPassword(std::string& password, const std::string& text) -> void
 {
 	password = std::string(getpass(text.c_str()));
+}
+
+auto Utils::getSelfPath(std::string& path) -> void
+{
+    char buff[PATH_MAX];
+    ssize_t len = ::readlink("/proc/self/exe", buff, sizeof(buff)-1);
+    if (len != -1)
+    {
+        for(auto i{len - 1}; i >= 0; --i)
+        {
+            if(buff[i] != '/' ) continue;
+            buff[i+1] = '\0';
+      	    path = std::string(buff);
+	    break;
+	}	
+    }
 }

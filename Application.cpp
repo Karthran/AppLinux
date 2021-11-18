@@ -17,6 +17,7 @@
 Application::Application()
 {
     _common_chat = std::make_shared<Chat>();
+     Utils::getSelfPath(_self_path);
 }
 
 auto Application::run() -> void
@@ -534,7 +535,7 @@ auto Application::save() -> void
 auto Application::saveUserArray() const -> bool
 {
     // Save vector<User>
-    File file_user("User.txt", std::fstream::out);
+    File file_user(_self_path + std::string("User.txt"), std::fstream::out);
     if (file_user.getError()) return false;
 
     file_user.write(_user_array.size());
@@ -551,7 +552,7 @@ auto Application::saveUserArray() const -> bool
 auto Application::savePasswordHash() -> void
 {
     // Save _password_hash
-    File file_hash("UserHash.txt", std::fstream::out);
+    File file_hash(_self_path + std::string("UserHash.txt"), std::fstream::out);
     for (auto i{0}; i < static_cast<int>(_user_array.size()); ++i)
     {
         file_hash.write(_password_hash[_user_array[i]->getUserLogin()]->getSalt());
@@ -567,7 +568,7 @@ auto Application::savePasswordHash() -> void
 auto Application::saveChats() const -> void
 {
     // Save Chats (Common and Privats)
-    File file_chat("Chat.txt", std::fstream::out);
+    File file_chat(_self_path + std::string("Chat.txt"), std::fstream::out);
 
     _common_chat->save(file_chat);
 
@@ -582,7 +583,7 @@ auto Application::saveChats() const -> void
 auto Application::saveNewMessages() -> void
 {
     // Save New Messages (Common and Privats)
-    File file_newmsg("NewMessages.txt", std::fstream::out);
+    File file_newmsg(_self_path + std::string("NewMessages.txt"), std::fstream::out);
 
     auto target_users_number{_new_messages_array.size()};
     file_newmsg.write(target_users_number);
@@ -630,7 +631,7 @@ auto Application::load() -> void
 // Load vector<User>
 auto Application::loadUserArray() -> bool
 {
-    File file_user("User.txt", std::fstream::in);
+    File file_user(_self_path + std::string("User.txt"), std::fstream::in);
 
     if (file_user.getError()) return false;
 
@@ -659,7 +660,7 @@ auto Application::loadUserArray() -> bool
 // Load Password Hash
 auto Application::loadPasswordHash() -> void
 {
-    File file_hash("UserHash.txt", std::fstream::in);
+    File file_hash(_self_path + std::string("UserHash.txt"), std::fstream::in);
     for (auto i{0}; i < static_cast<int>(_user_array.size()); ++i)
     {
         std::string salt{};
@@ -677,7 +678,7 @@ auto Application::loadPasswordHash() -> void
 // Load Chats (Common and Privats)
 auto Application::loadChats() -> void
 {
-    File file_chat("Chat.txt", std::fstream::in);
+    File file_chat(_self_path + std::string("Chat.txt"), std::fstream::in);
 
     int user1{0}, user2{0};
     file_chat.read(user1);
@@ -709,7 +710,7 @@ auto Application::loadChats() -> void
 auto Application::loadNewMessages() -> void
 {
     // Load New Messages (Common and Privats)
-    File file_newmsg("NewMessages.txt", std::fstream::in);
+    File file_newmsg(_self_path + std::string("NewMessages.txt"), std::fstream::in);
     if (file_newmsg.getError()) return;
     auto user_number{0};
     file_newmsg.read(user_number);
