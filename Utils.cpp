@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <unistd.h> 
 
 #include "Utils.h"
 
@@ -47,4 +48,8 @@ auto Utils::printTimeAndData(const tm& timeinfo) -> void
 auto Utils::getString(std::string& string, int size) -> void
 {
     std::cin >> string;
+}
+auto Utils::getPassword(std::string& password) -> void
+{
+	password = std::string(getpass("Enter password: "));
 }

@@ -21,4 +21,8 @@ install:
 	install $(TARGET) $(PREFIX)
 uninstall:
 	rm -rf $(PREFIX)/$(TARGET)
+	rm $(PREFIX)/User.txt
+	rm $(PREFIX)/Chat.txt
+	rm $(PREFIX)/UserHash.txt
+	rm $(PREFIX)/NewMessages.txt
 

@@ -28,6 +28,8 @@ const int MESSAGES_ON_PAGE = 5;
 const int LINE_TO_PAGE = 15;
 const int MAX_INT = 0xffff;
 
+const std::string INSTALL_PATH = "/usr/local/bin";
+
 class Utils
 {
 public:
@@ -35,7 +37,8 @@ public:
     static auto inputIntegerValue() -> int;
     static auto printTimeAndData(const tm& timeinfo) -> void;
     static auto getString(std::string& string, int size) -> void;
-
+    static auto getPassword(std::string& string) -> void;
+    
     template <typename T>
     static auto minToMaxOrder(T& min, T& max) -> bool;
 
