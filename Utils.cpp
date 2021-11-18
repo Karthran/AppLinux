@@ -49,7 +49,7 @@ auto Utils::getString(std::string& string, int size) -> void
 {
     std::cin >> string;
 }
-auto Utils::getPassword(std::string& password) -> void
+auto Utils::getPassword(std::string& password, const std::string& text) -> void
 {
-	password = std::string(getpass("Enter password: "));
+	password = std::string(getpass(text.c_str()));
 }

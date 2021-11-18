@@ -37,7 +37,7 @@ public:
     static auto inputIntegerValue() -> int;
     static auto printTimeAndData(const tm& timeinfo) -> void;
     static auto getString(std::string& string, int size) -> void;
-    static auto getPassword(std::string& string) -> void;
+    static auto getPassword(std::string& string, const std::string& text) -> void;
     
     template <typename T>
     static auto minToMaxOrder(T& min, T& max) -> bool;

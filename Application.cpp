@@ -118,22 +118,19 @@ auto Application::createAccount_inputPassword(std::string& user_password) const 
     auto isOK{false};
     while (!isOK)
     {
-        std::cout << std::endl << "Password(max " << MAX_INPUT_SIZE << " letters): ";
-        std::cout << BOLDGREEN;
-        Utils::getString(user_password, MAX_INPUT_SIZE);
-        std::cout << RESET;
+	std::cout <<RESET << std::endl;  
+	Utils::getPassword(user_password,"Enter password: ");
+	std::cout << std::endl;
 
         if (user_password.empty()) continue;
 
-        std::cout << std::endl << "Re-enter your password: ";
-        std::cout << BOLDGREEN;
-
-        std::string check_user_password;
-        Utils::getString(check_user_password, MAX_INPUT_SIZE);
-        std::cout << RESET;
+	std::string check_user_password;
+        
+	Utils::getPassword(check_user_password, "Re-enter your password: ");
+        
         if (user_password != check_user_password)
         {
-            std::cout << std::endl << RED << "Password don't match!" << RESET;
+            std::cout << std::endl << RED << "Password don't match!" << RESET << std::endl;
         }
         else
         {
@@ -190,10 +187,9 @@ auto Application::signIn_inputLogin(std::string& user_login) const -> int
 }
 auto Application::signIn_inputPassword(std::string& user_password) const -> void
 {
-    std::cout << RESET << "Password:";
-    std::cout << BOLDGREEN;
-    Utils::getString(user_password, MAX_INPUT_SIZE);
     std::cout << RESET << std::endl;
+    Utils::getPassword(user_password, "Password: ");
+    std::cout << std::endl;
 }
 
 auto Application::selectCommonOrPrivate(const std::shared_ptr<User>& user) -> int
