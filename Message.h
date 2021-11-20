@@ -42,7 +42,7 @@ private:
     std::string _message{};
     std::shared_ptr<User> _user{nullptr};
     tm _message_creation_time{};
-    bool _is_edited = false;
+    bool _is_edited {false};
     tm _message_editing_time{};
     bool _is_message_initialized{false};
 };

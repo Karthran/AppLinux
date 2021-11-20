@@ -23,13 +23,13 @@ auto Utils::inputIntegerValue() -> int
         if (std::cin.fail())
         {
             std::cin.clear();
-            std::cin.ignore(MAX_INT, '\n');  //, '\n');
+            std::cin.ignore(IGNORED_NUM, '\n');  //, '\n');
             std::cout << "Incorrect value entered!" << std::endl;
             std::cout << "Try again: ";
         }
         else
         {
-            std::cin.ignore(MAX_INT, '\n');  //, '\n');
+            std::cin.ignore(IGNORED_NUM, '\n');  //, '\n');
             return value;
         }
     }
