@@ -47,10 +47,11 @@ auto Utils::printTimeAndData(const tm& timeinfo) -> void
     std::cout << timeinfo.tm_year + 1900 << std::endl;
 }
 
-auto Utils::getString(std::string& string) -> void
+auto Utils::getString(std::string& string, size_t size) -> void
 {
     std::cin >> string;
     std::cin.ignore(IGNORED_NUM, '\n');
+    if(size < string.size()) string.resize(size);
 }
 auto Utils::getPassword(std::string& password, const std::string& text) -> void
 {
