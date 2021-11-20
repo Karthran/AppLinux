@@ -51,7 +51,7 @@ auto Utils::getString(std::string& string, size_t size) -> void
 {
     std::cin >> string;
     std::cin.ignore(IGNORED_NUM, '\n');
-    if(size < string.size()) string.resize(size);
+    if(size && size < string.size()) string.resize(size);
 }
 auto Utils::getPassword(std::string& password, const std::string& text) -> void
 {
