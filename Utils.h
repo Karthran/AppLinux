@@ -36,7 +36,7 @@ public:
     static auto isOKSelect() -> bool;
     static auto inputIntegerValue() -> int;
     static auto printTimeAndData(const tm& timeinfo) -> void;
-    static auto getString(std::string& string, int size) -> void;
+    static auto getString(std::string& string) -> void;
     static auto getPassword(std::string& string, const std::string& text) -> void;
     static auto getSelfPath(std::string& path) -> void;	   
 

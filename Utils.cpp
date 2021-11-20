@@ -16,6 +16,7 @@ auto Utils::isOKSelect() -> bool
 auto Utils::inputIntegerValue() -> int
 {
     auto value{UNSUCCESSFUL};
+    
     while (true)
     {
         std::cin >> value;
@@ -23,13 +24,13 @@ auto Utils::inputIntegerValue() -> int
         if (std::cin.fail())
         {
             std::cin.clear();
-            std::cin.ignore(IGNORED_NUM, '\n');  //, '\n');
+            std::cin.ignore(IGNORED_NUM, '\n');  
             std::cout << "Incorrect value entered!" << std::endl;
             std::cout << "Try again: ";
         }
         else
         {
-            std::cin.ignore(IGNORED_NUM, '\n');  //, '\n');
+            std::cin.ignore(IGNORED_NUM, '\n');  
             return value;
         }
     }
@@ -46,9 +47,10 @@ auto Utils::printTimeAndData(const tm& timeinfo) -> void
     std::cout << timeinfo.tm_year + 1900 << std::endl;
 }
 
-auto Utils::getString(std::string& string, int size) -> void
+auto Utils::getString(std::string& string) -> void
 {
     std::cin >> string;
+    std::cin.ignore(IGNORED_NUM, '\n');
 }
 auto Utils::getPassword(std::string& password, const std::string& text) -> void
 {

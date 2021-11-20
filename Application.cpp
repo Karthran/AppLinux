@@ -78,7 +78,7 @@ auto Application::createAccount_inputName(std::string& user_name) const -> void
     {
         std::cout << "Name(max " << MAX_INPUT_SIZE << " letters): ";
         std::cout << BOLDGREEN;
-        Utils::getString(user_name, MAX_INPUT_SIZE);
+        Utils::getString(user_name);
         std::cout << RESET;
         const std::string& (User::*get_name)() const = &User::getUserName;
         if (user_name.empty() || checkingForStringExistence(user_name, get_name) != UNSUCCESSFUL)
@@ -100,7 +100,7 @@ auto Application::createAccount_inputLogin(std::string& user_login) const -> voi
     {
         std::cout << std::endl << "Login(max " << MAX_INPUT_SIZE << " letters): ";
         std::cout << BOLDGREEN;
-        Utils::getString(user_login, MAX_INPUT_SIZE);
+        Utils::getString(user_login);
         std::cout << RESET;
         const std::string& (User::*get_login)() const = &User::getUserLogin;
         if (user_login.empty() || checkingForStringExistence(user_login, get_login) != UNSUCCESSFUL)
@@ -181,7 +181,9 @@ auto Application::signIn_inputLogin(std::string& user_login) const -> int
 {
     std::cout << RESET << "Login:";
     std::cout << BOLDGREEN;
-    std::cin >> user_login;
+
+    Utils::getString(user_login);
+    
     std::cout << RESET;
     const std::string& (User::*get_login)() const = &User::getUserLogin;
     return checkingForStringExistence(user_login, get_login);
