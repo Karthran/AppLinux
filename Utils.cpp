@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <unistd.h> 
 #include <limits.h>
+#include <sys/utsname.h> 
 
 #include "Utils.h"
 
@@ -72,4 +73,17 @@ auto Utils::getSelfPath(std::string& path) -> void
 	    break;
 	}	
     }
+}
+
+auto Utils::printOSVersion() -> void
+{
+    struct utsname utsname; // объект для структуры типа utsname
+
+    uname(&utsname); // передаем объект по ссылке
+
+    std::cout << "OS name: " << utsname.sysname << std::endl; 
+    std::cout << "Host name: " << utsname.nodename << std::endl; 
+    std::cout << "OS release: " << utsname.release << std::endl; 
+    std::cout << "OS version: " << utsname.version << std::endl; 
+    std::cout << "Architecture: " << utsname.machine << std::endl; 
 }
